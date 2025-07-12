@@ -1,8 +1,32 @@
 require("./db.js");
 const app = require('./app');
+const http = require("http");
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+
+const io = new Server(server, {
+  cors: {
+    origin: "*",
+    methods: ["GET", "POST"]
+  }
+});
+
+let activeConnections = 0;
+
+io.on("connection", (socket) => {
+  activeConnections++;
+  console.log("➕ New client connected, total:", activeConnections);
+  io.emit("activeConnections", activeConnections);
+
+  socket.on("disconnect", () => {
+    activeConnections--;
+    console.log("➖ Client disconnected, total:", activeConnections);
+    io.emit("activeConnections", activeConnections);
+  });
+});
 
 const PORT = process.env.PORT || 10000;
 
-app.listen(PORT, () => {
-  console.log(`✅ Сервер запущен на порту ${PORT}`);
+server.listen(PORT, () => {
+  console.log(`✅ Сервер и Socket.IO запущены на порту ${PORT}`);
 });

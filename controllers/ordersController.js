@@ -3,15 +3,15 @@ const ordersService = require("../services/ordersService");
 async function getOrders(req, res, next) {
   try {
     const { page = 1, limit = 10 } = req.query;
-    const data = await ordersService.getAllOrders({ page: +page, limit: +limit });
+    const data = await ordersService.getAllOrders({
+      page: +page,
+      limit: +limit,
+    });
     res.json(data);
   } catch (err) {
     next(err);
   }
 }
-
-
-
 
 async function deleteOrder(req, res, next) {
   try {

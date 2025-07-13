@@ -28,8 +28,11 @@ async function getOrderById(id) {
 }
 
 async function deleteOrder(id) {
-  await Product.deleteMany({ order: id });
-  await Order.findByIdAndDelete(id);
+  const deletedOrder = await Order.findByIdAndDelete(id);
+  if (!deletedOrder) {
+    throw new Error("Order not found");
+  }
+  return deletedOrder;
 }
 
 module.exports = { getAllOrders, getOrderById, deleteOrder };

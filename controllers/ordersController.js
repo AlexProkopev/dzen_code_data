@@ -15,12 +15,13 @@ async function getOrders(req, res, next) {
 
 async function deleteOrder(req, res, next) {
   try {
-    await ordersService.deleteOrder(req.params.id);
-    res.json({ message: "Order deleted" });
+    const deletedOrder = await ordersService.deleteOrder(req.params.id);
+    res.json({ message: "Order and associated products deleted", order: deletedOrder });
   } catch (err) {
     next(err);
   }
 }
+
 
 async function getOrderById(req, res, next) {
   try {

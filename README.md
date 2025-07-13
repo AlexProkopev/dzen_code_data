@@ -86,8 +86,21 @@ server/
 └── server.js        # Запуск сервера и сокетов
 </code></pre>
 
-<h2>🌍 .env</h2>
-<pre><code>PORT=5050
-DB_URI=mongodb+srv://dzencode:dzencode1234@cluster0.palkfdj.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
-DB_URI_MONGOOSE=mongodb+srv://dzencode:dzencode1234@cluster0.palkfdj.mongodb.net/?retryWrites=true&w=majority
+<h3>🚀 Запуск через Docker</h3>
+<pre><code># 1. Клонируй репозиторий
+git clone https://github.com/AlexProkopev/dzen_code_data.git
+cd dzen_code_data
+
+# 2. Убедись, что есть файл .env
+cp .env.example .env
+
+# 3. Собери Docker-образ
+docker build -t dzen-code-back .
+
+# 4. Запусти бэкенд на порту 5050
+docker run -p 8080:5050 dzen-code-back
 </code></pre>
+
+<p>✅ Теперь Frontend сможет обращаться к API по адресу <code>http://localhost:8080/api</code>.</p>
+
+<a href="https://github.com/AlexProkopev/dzen-code">Перейти к репозиторию Frontend</a>

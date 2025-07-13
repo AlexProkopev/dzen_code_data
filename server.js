@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 require("./db.js");
 const app = require('./app');
 const http = require("http");

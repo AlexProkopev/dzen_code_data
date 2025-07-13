@@ -78,6 +78,7 @@
 server/
 ├── models/          # Схемы MongoDB
 ├── controllers/     # Бизнес-логика
+├── services/        # Вспомогательные функции для контроллеров
 ├── dbSchema/        # PDF и .dbs-файл с визуальной схемой MongoDB (открывается в DbSchema, Notion или аналогах)
 ├── routes/          # API endpoints
 ├── db.js            # Подключение MongoDB

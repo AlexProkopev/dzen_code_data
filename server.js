@@ -17,11 +17,23 @@ const io = new Server(server, {
 
 let activeConnections = 0;
 
+// io.on("connection", (socket) => {
+//   activeConnections++;
+//   console.log("➕ New client connected, total:", activeConnections);
+//   io.emit("activeConnections", activeConnections);
+
+//   socket.on("disconnect", () => {
+//     activeConnections--;
+//     console.log("➖ Client disconnected, total:", activeConnections);
+//     io.emit("activeConnections", activeConnections);
+//   });
+// });
+
 io.on("connection", (socket) => {
   activeConnections++;
   console.log("➕ New client connected, total:", activeConnections);
   io.emit("activeConnections", activeConnections);
-
+  socket.emit("activeConnections", activeConnections);
   socket.on("disconnect", () => {
     activeConnections--;
     console.log("➖ Client disconnected, total:", activeConnections);

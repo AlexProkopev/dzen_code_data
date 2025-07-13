@@ -44,5 +44,5 @@ io.on("connection", (socket) => {
 const PORT = process.env.PORT || 10000;
 
 server.listen(PORT, () => {
-  console.log(`✅ Сервер и Socket.IO запущены на порту ${PORT}`);
+  console.log(`✅ Сервер и Socket.IO запущены`);
 });
